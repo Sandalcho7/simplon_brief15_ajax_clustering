@@ -1,3 +1,18 @@
 body {
     background-color: #272727;
+    color: azure;
+}
+
+h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+    color: lightblue;
+    text-align: center;
+}
+
+h1 span {
+    font-weight: normal;
+    font-style: italic;
+    color: azure;
 }
