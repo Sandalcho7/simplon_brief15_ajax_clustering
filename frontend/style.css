@@ -1,18 +1,67 @@
 body {
     background-color: #272727;
+    font-family: 'Source Sans Pro', sans-serif;
     color: azure;
 }
 
 h1 {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 4em;
     font-weight: bold;
     color: lightblue;
     text-align: center;
+    margin-bottom: 100px;
 }
-
 h1 span {
     font-weight: normal;
     font-style: italic;
     color: azure;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: lightblue;
+    margin: 0 auto;
+}
+
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
+}
+.dropdown-container > * {
+    margin: 0 5px;
+}
+
+select {
+    font-size: 1em;
+    min-width: 250px;
+}
+
+button {
+    font-size: 1em;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: lightblue;
+    color: #272727;
+    border: none;
+    border-radius: 4px;
+}
+button:hover {
+    background-color: rgb(157, 197, 211);
+    box-shadow: 2px 2px 4px #181818;
+}
+
+.result-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p.big-number {
+    font-size: 6em;
+    font-weight: bolder;
+    color: azure;
+    margin: 0;
 }
