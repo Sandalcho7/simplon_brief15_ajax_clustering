@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     return response.json();
                 })
                 .then(data => {
-                    const roundedInertia = Math.round(data.inertia);
-                    resultDisplay.textContent = roundedInertia;
+                    const roundedResult = data.result.toFixed(3);
+                    resultDisplay.textContent = roundedResult;
                 })
                 .catch(error => console.error('Error:', error));
         }
