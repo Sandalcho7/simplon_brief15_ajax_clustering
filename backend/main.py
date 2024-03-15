@@ -1,26 +1,38 @@
 import uvicorn
-import pandas as pd
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-from config import DATA
-from functions import kmeans_silhouette_score, spectral_silhouette_score, dbscan_silhouette_score
+from functions import *
+
+
+origins = ["http://localhost", "http://localhost:8001"]
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/k-means")
 def return_kmeans_silhouette_score():
     result_kmeans = kmeans_silhouette_score()
-    return {"silhouette_kmeans": result_kmeans}
+    return {"result": result_kmeans}
 
 @app.get("/spectral")
 def return_spectral_silhouette_score():
     result_spectral = spectral_silhouette_score()
-    return{"silhouette_spectral": result_spectral}
+    return{"result": result_spectral}
 
 @app.get("/dbscan")
 def return_dbscan_silhouette_score():
     result_dbscan = dbscan_silhouette_score()
-    return{"silhouette_dbscan": result_dbscan}
+    return{"result": result_dbscan}
+
 
 uvicorn.run(app, host="localhost", port=8000)
