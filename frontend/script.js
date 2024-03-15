@@ -1,10 +1,12 @@
+const API_PATH = "http://localhost:8000"
+
 document.addEventListener("DOMContentLoaded", function() {
     const runButton = document.getElementById("run-button");
     const dropdown = document.getElementById("endpoint-dropdown");
     const resultDisplay = document.querySelector(".result-display .big-number");
 
     runButton.addEventListener("click", function() {
-        const selectedEndpoint = dropdown.value;
+        const selectedEndpoint = API_PATH + dropdown.value;
         if (selectedEndpoint) {
             fetch(selectedEndpoint)
                 .then(response => {
