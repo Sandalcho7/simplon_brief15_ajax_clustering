@@ -22,8 +22,10 @@ project/
 │   ├── data/
 │   │   └── mall_customers.csv    # Emplacement des données (à télécharger)
 │   ├── config.py    # Config pour le backend (emplacement des données, etc.)
-│   ├── functions.py    # Fonctions des modèles de clustering
 │   ├── main.py    # API
+│   ├── models.py    # Fonctions des modèles de clustering
+│   ├── plots.py    # Fonctions de plotting des différents modèles
+│   ├── processing.py    # Fonction de processing des données
 │   ├── requirements.txt
 │   └── spec.md    # Spécifications de l'API
 │
