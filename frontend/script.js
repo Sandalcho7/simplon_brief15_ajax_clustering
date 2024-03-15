@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const resultDisplay = document.querySelector(".result-display .big-number");
 
     runButton.addEventListener("click", function() {
-        const selectedEndpoint = API_PATH + dropdown.value;
+        const selectedEndpoint = API_PATH + dropdown.value + "/score";
         if (selectedEndpoint) {
             fetch(selectedEndpoint)
                 .then(response => {
