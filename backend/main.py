@@ -33,8 +33,7 @@ def return_kmeans_silhouette_score():
 
 @app.get("/k-means/plot")
 def return_kmeans_plot():
-    plot_kmeans = kmeans_plot(kmeans_model)
-    return {"plot": plot_kmeans}
+    return kmeans_plot(kmeans_model)
 
 
 @app.get("/spectral/score")

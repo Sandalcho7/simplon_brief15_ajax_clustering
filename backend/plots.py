@@ -9,15 +9,15 @@ from processing import format_data
 
 
 def kmeans_plot(model):
-    DATA = format_data(DATA)
-    model.fit(DATA[["Spending Score (1-100)" , "Annual Income (k$)"]])
+    data = format_data(DATA)
+    model.fit(data[["Spending Score (1-100)" , "Annual Income (k$)"]])
     centroids = model.cluster_centers_
     labels = model.labels_
 
     plt.figure(1, figsize=(15, 7))
     plt.clf()
 
-    plt.scatter(x=DATA["Spending Score (1-100)"], y=DATA["Annual Income (k$)"], c=labels, s=200)
+    plt.scatter(x=data["Spending Score (1-100)"], y=data["Annual Income (k$)"], c=labels, s=200)
     plt.scatter(x=centroids[:, 0], y=centroids[:, 1], s=300, c='red', alpha=0.5)
     plt.ylabel('Spending Score (1-100)')
     plt.xlabel('Annual Income (k$)')
