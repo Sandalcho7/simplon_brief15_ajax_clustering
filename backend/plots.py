@@ -15,7 +15,7 @@ def kmeans_plot(model):
     centroids = model.cluster_centers_
     labels = model.labels_
 
-    plt.figure(1, figsize=(15, 7))
+    plt.figure(1, figsize=(15, 10))
     plt.clf()
 
     plt.scatter(x=data["Spending Score (1-100)"], y=data["Annual Income (k$)"], c=labels, s=200)
@@ -36,7 +36,7 @@ def spectral_plot(model):
     model.fit(data[["Spending Score (1-100)" , "Annual Income (k$)"]])
     labels = model.labels_
 
-    plt.figure(1, figsize=(15, 7))
+    plt.figure(1, figsize=(15, 10))
     plt.clf()
 
     plt.scatter(x=data["Spending Score (1-100)"], y=data["Annual Income (k$)"], c=labels, s=200)
