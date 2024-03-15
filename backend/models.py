@@ -1,14 +1,12 @@
-from sklearn.cluster import KMeans, SpectralClustering, DBSCAN
 from sklearn.metrics import silhouette_score
 
 from config import DATA
+from processing import format_data
 
 
-DATA["Gender"] = DATA["Gender"].replace({"Male": 0, "Female": 1})
 
-
-def kmeans_silhouette_score():
-    model = KMeans(n_clusters=5, n_init="auto")
+def kmeans_silhouette_score(model):
+    format_data(DATA)
     model.fit(DATA[["Spending Score (1-100)", "Annual Income (k$)"]])
 
     labels = model.labels_
@@ -18,8 +16,8 @@ def kmeans_silhouette_score():
     return silhouette_score_avg
 
 
-def spectral_silhouette_score():
-    model = SpectralClustering(n_clusters=6, n_init=20)
+def spectral_silhouette_score(model):
+    format_data(DATA)
     model.fit(DATA[["Spending Score (1-100)", "Annual Income (k$)"]])
 
     labels = model.labels_
@@ -29,8 +27,8 @@ def spectral_silhouette_score():
     return silhouette_score_avg
 
 
-def dbscan_silhouette_score():
-    model = DBSCAN(eps=9, min_samples=3)
+def dbscan_silhouette_score(model):
+    format_data(DATA)
     model.fit(DATA[["Spending Score (1-100)", "Annual Income (k$)"]])
 
     labels = model.labels_
