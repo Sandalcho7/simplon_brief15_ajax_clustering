@@ -1,6 +1,7 @@
 import uvicorn
 
 from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sklearn.cluster import KMeans, SpectralClustering, DBSCAN
 
@@ -38,14 +39,23 @@ def return_kmeans_plot():
 
 @app.get("/spectral/score")
 def return_spectral_silhouette_score():
-    result_spectral = spectral_silhouette_score()
+    result_spectral = spectral_silhouette_score(spectral_model)
     return{"result": result_spectral}
+
+@app.get("/spectral/plot")
+def return_spectral_plot():
+    return spectral_plot(spectral_model)
 
 
 @app.get("/dbscan/score")
 def return_dbscan_silhouette_score():
-    result_dbscan = dbscan_silhouette_score()
+    result_dbscan = dbscan_silhouette_score(dbscan_model)
     return{"result": result_dbscan}
+
+@app.get("/dbscan/plot")
+async def return_dbscan_plot():
+    img_bytes = dbscan_plot(dbscan_model)
+    return StreamingResponse(img_bytes, media_type="image/png")
 
 
 
