@@ -1,6 +1,8 @@
 from sklearn.cluster import KMeans, SpectralClustering, DBSCAN
 from sklearn.metrics import silhouette_score
+
 from config import DATA
+
 
 def kmeans_silhouette_score():
 
