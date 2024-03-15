@@ -53,6 +53,7 @@ python -m http.server 8001
 ```
 2 / Depuis le terminal, lancer l'API en se plaçant dans le dossier backend/ et en exécutant :
 ```bash
-python3 main.py
+python main.py
 ```
+Par défaut, le port 8000 sera utilisé pour l'API, penser à changer l'API_PATH dans le script.js dans le cas contraire.<br><br>
 3 / Se rendre à l'adresse http://localhost:8001 pour consulter la page et communiquer avec l'API.
