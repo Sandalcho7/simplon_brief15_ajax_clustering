@@ -4,7 +4,7 @@ Dans le cadre de l'analyse de donnée des clients d'un centre commercial, nous u
 
 ### Modèles utilisés
 
-Le clustering est une méthode de Machine Learning non supervisée
+Le clustering est une méthode de Machine Learning non supervisée qui repère des similarités dans les données pour pouvoir ensuite les structurer.
 
 ** KMeans ** : Un algorithme qui permet de regrouper des individus sans a priori et d'établir une moyenne de référence parmi un jeu de données. L’idée est alors de définir un profil type qui pourra toucher le plus grand nombre.
 
