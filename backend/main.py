@@ -1,14 +1,15 @@
 import uvicorn
+import pickle
 
 from fastapi import FastAPI
-from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
-from sklearn.cluster import KMeans, SpectralClustering, DBSCAN
 
-from models import *
-from plots import *
+from scoring import get_kmeans_silhouette_score, get_dbscan_silhouette_score
+from plotting import kmeans_plot, dbscan_plot
 
-origins = ["http://localhost", "http://localhost:8001"]
+
+origins = ["*"]
+
 
 app = FastAPI()
 
@@ -22,41 +23,34 @@ app.add_middleware(
 )
 
 
-kmeans_model = KMeans(n_clusters=5, n_init="auto")
-spectral_model = SpectralClustering(n_clusters=6, n_init=20)
-dbscan_model = DBSCAN(eps=9, min_samples=3)
+# Models loading
+with open("pkl/kmeans.pkl", "rb") as f:
+    kmeans_model = pickle.load(f)
+
+with open("pkl/dbscan.pkl", "rb") as f:
+    dbscan_model = pickle.load(f)
 
 
 @app.get("/k-means/score")
 def return_kmeans_silhouette_score():
-    result_kmeans = kmeans_silhouette_score(kmeans_model)
+    result_kmeans = get_kmeans_silhouette_score()
     return {"result": result_kmeans}
+
 
 @app.get("/k-means/plot")
 def return_kmeans_plot():
     return kmeans_plot(kmeans_model)
 
 
-@app.get("/spectral/score")
-def return_spectral_silhouette_score():
-    result_spectral = spectral_silhouette_score(spectral_model)
-    return{"result": result_spectral}
-
-@app.get("/spectral/plot")
-def return_spectral_plot():
-    return spectral_plot(spectral_model)
-
-
 @app.get("/dbscan/score")
 def return_dbscan_silhouette_score():
-    result_dbscan = dbscan_silhouette_score(dbscan_model)
-    return{"result": result_dbscan}
+    result_dbscan = get_dbscan_silhouette_score()
+    return {"result": result_dbscan}
+
 
 @app.get("/dbscan/plot")
 async def return_dbscan_plot():
-    img_bytes = dbscan_plot(dbscan_model)
-    return StreamingResponse(img_bytes, media_type="image/png")
+    return dbscan_plot(dbscan_model)
 
 
-
-uvicorn.run(app, host="localhost", port=8000)
+uvicorn.run(app, host="0.0.0.0", port=8000)
