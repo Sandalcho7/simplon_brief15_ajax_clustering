@@ -5,3 +5,4 @@ __pycache__/
 
 # Personal settings
 backend/data/
+backend/pkl/
