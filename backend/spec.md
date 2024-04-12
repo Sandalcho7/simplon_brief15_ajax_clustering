@@ -8,8 +8,6 @@ Le clustering est une méthode de Machine Learning non supervisée qui repère d
 
 ** KMeans ** : Un algorithme qui permet de regrouper des individus sans a priori et d'établir une moyenne de référence parmi un jeu de données. L’idée est alors de définir un profil type qui pourra toucher le plus grand nombre.
 
-** Spectral Clustering ** : Un algorithme de partitionnement de données spectral a pour objectif de créer différents groupes ayant un maximum de points communs.
-
 ** DBSCAN ** : Un algorithme se base sur la distance et la densité des clusters pour effectuer des sous-groupes. De son côté, le spectral clustering se base sur la similarité des données.
 
 ### Indicateur de performance
@@ -21,9 +19,6 @@ Un score de silhouette proche de 1 indique que les échantillons sont bien regro
 
 **"/k-means/score"** : Ce endpoint renvoie le silhouette score du modèle KMeans dans un format .json 
 **"/k-means/plot"** : Ce endpoint renvoie une image du graphique en nuage de point du modèle KMeans dans un format .png 
-
-**"/spectral/score"** : Ce endpoint renvoie le silhouette score du modèle Spectral Clustering dans un format .json 
-**"/spectral/plot"** : Ce endpoint renvoie une image du graphique en nuage de point du modèle Spectral Clustering dans un format .png
 
 **"/dbscan/score"** : Ce endpoint renvoie le silhouette score du modèle DBSCAN dans un format .json 
 **"/dbscan/plot"** : Ce endpoint renvoie une image du graphique en nuage de point du modèle DBSCAN dans un format .png
