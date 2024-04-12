@@ -8,7 +8,6 @@ from scoring import get_kmeans_silhouette_score, get_dbscan_silhouette_score
 from plotting import kmeans_plot, dbscan_plot
 
 
-
 origins = ["*"]
 
 
@@ -37,6 +36,7 @@ def return_kmeans_silhouette_score():
     result_kmeans = get_kmeans_silhouette_score()
     return {"result": result_kmeans}
 
+
 @app.get("/k-means/plot")
 def return_kmeans_plot():
     return kmeans_plot(kmeans_model)
@@ -45,12 +45,12 @@ def return_kmeans_plot():
 @app.get("/dbscan/score")
 def return_dbscan_silhouette_score():
     result_dbscan = get_dbscan_silhouette_score()
-    return{"result": result_dbscan}
+    return {"result": result_dbscan}
+
 
 @app.get("/dbscan/plot")
 async def return_dbscan_plot():
     return dbscan_plot(dbscan_model)
-
 
 
 uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -8,7 +8,6 @@ from config import DATA_PATH
 from processing import format_data
 
 
-
 # Data loading
 data = pd.read_csv(DATA_PATH)
 formatted_data = format_data(data)
@@ -20,7 +19,7 @@ dbscan_model = DBSCAN(eps=9, min_samples=3)
 
 
 # Directory for saving models
-output_directory = 'pkl'
+output_directory = "pkl"
 
 # Create the directory if it doesn't exist
 if not os.path.exists(output_directory):
@@ -37,8 +36,8 @@ for model in model_list:
     print(f"--- {model_name} trained!")
 
     file_name = os.path.join(output_directory, f"{model_name}.pkl")
-    
-    with open(file_name, 'wb') as f:
+
+    with open(file_name, "wb") as f:
         pickle.dump(model, f)
 
     print(f"--- {model_name} saved!")
