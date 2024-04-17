@@ -15,7 +15,7 @@ properties:
         resources:
           requests:
             cpu: 1
-            memoryInGb: 1.5
+            memoryInGb: 1
     - name: front
       properties:
         image: abajax.azurecr.io/ab-front:latest
@@ -24,7 +24,7 @@ properties:
         resources:
           requests:
             cpu: 1
-            memoryInGb: 1.5
+            memoryInGb: 1
   osType: Linux
   ipAddress:
     type: Public

@@ -57,8 +57,8 @@ jobs:
           find: "password.registry"
           replace: ${{ secrets.AZURE_ACR_PASSWORD }}
           regex: false
-          include: 'acr_config.yaml'
+          include: 'acr_config.yml'
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
-        run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yaml --admin-enabled true
+        run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yml
