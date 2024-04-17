@@ -30,6 +30,25 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_GITHUB_SECRET }}
 
+      # Get Azure Container Registry Login Server
+      - name: Get ACR Login Server
+        id: acr
+        run: |
+          ACR_LOGIN_SERVER=$(az acr show --name ${{ env.ACR_NAME }} --query "loginServer" --output tsv)
+          echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
+
+      # Get Azure Access Token
+      - name: Get Azure Access Token
+        id: get_token
+        run: |
+          TOKEN=$(az account get-access-token --query "accessToken" --output tsv)
+          echo "TOKEN=$TOKEN" >> $GITHUB_ENV
+
+      # Login to Azure Container Registry using Access Token
+      - name: Login to ACR
+        run: |
+          docker login ${{ env.ACR_NAME }}.azurecr.io --username ${{ steps.acr.outputs.ACR_LOGIN_SERVER }} --password ${{ env.TOKEN }}
+
       # Build and push frontend Docker image to ACR
       - name: Build and push frontend Docker image
         working-directory: ./frontend
