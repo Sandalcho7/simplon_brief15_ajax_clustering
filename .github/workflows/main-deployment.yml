@@ -3,7 +3,7 @@ env:
   ACR_NAME: abajax
   
   FRONTEND_IMAGE: ab-front
-  FRONTEND_CONTAINER: ab-front
+  FRONTEND_CONT: ab-front
   FRONTEND_DNS: ab-front
   
   BACKEND_IMAGE: ab-back
@@ -35,6 +35,7 @@ jobs:
         id: acr
         run: |
           ACR_LOGIN_SERVER=$(az acr show --name ${{ env.ACR_NAME }} --query "loginServer" --output tsv)
+          echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER"
           echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
 
       # Get Azure Access Token
@@ -42,12 +43,13 @@ jobs:
         id: get_token
         run: |
           TOKEN=$(az account get-access-token --query "accessToken" --output tsv)
+          echo "TOKEN=$TOKEN"
           echo "TOKEN=$TOKEN" >> $GITHUB_ENV
 
       # Login to Azure Container Registry using Access Token
       - name: Login to ACR
         run: |
-          docker login ${{ env.ACR_NAME }}.azurecr.io --username ${{ steps.acr.outputs.ACR_LOGIN_SERVER }} --password ${{ env.TOKEN }}
+          docker login ${{ steps.acr.outputs.ACR_LOGIN_SERVER }} --username ${{ env.ACR_NAME }} --password ${{ env.TOKEN }}
 
       # Build and push frontend Docker image to ACR
       - name: Build and push frontend Docker image
