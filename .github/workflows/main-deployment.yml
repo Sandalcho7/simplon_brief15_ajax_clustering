@@ -53,5 +53,5 @@ jobs:
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
         run: |
-          az container create --resource-group ${{ env.RG_NAME }} --name ${{ env.FRONTEND_CONT }} --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest --dns-name-label ${{ env.FRONTEND_DNS }} --ports 8001 --protocol TCP
-          az container create --resource-group ${{ env.RG_NAME }} --name ${{ env.BACKEND_CONT }} --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest --dns-name-label ${{ env.BACKEND_DNS }} --ports 8000 --protocol TCP
+          az container create --resource-group ${{ env.RG_NAME }} --name ${{ env.FRONTEND_CONT }} --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest --dns-name-label ${{ env.FRONTEND_DNS }} --ports 8001 --protocol TCP --registry-password ${{ secrets.AZURE_ACR_PASSWORD }}
+          az container create --resource-group ${{ env.RG_NAME }} --name ${{ env.BACKEND_CONT }} --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest --dns-name-label ${{ env.BACKEND_DNS }} --ports 8000 --protocol TCP --registry-password ${{ secrets.AZURE_ACR_PASSWORD }}
