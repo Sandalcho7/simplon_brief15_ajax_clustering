@@ -34,11 +34,6 @@ jobs:
       - name: Login to ACR
         run: az acr login --name ${{ env.ACR_NAME }}
 
-      # Login to Azure Container Registry using Access Token
-      - name: Login to ACR
-        run: |
-          docker login ${{ steps.acr.outputs.ACR_LOGIN_SERVER }} --username ${{ env.ACR_NAME }} --password ${{ env.TOKEN }}
-
       # Build and push frontend Docker image to ACR
       - name: Build and push frontend Docker image
         working-directory: ./frontend
