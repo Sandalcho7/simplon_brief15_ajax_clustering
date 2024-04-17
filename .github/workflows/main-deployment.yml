@@ -60,8 +60,8 @@ jobs:
           include: 'acr_config.yaml'
 
       - name: Delete Actual Container Instances
-        run: az container delete --resource-group ${{ RG_NAME }} --name abajax --yes
+        run: az container delete --resource-group ${{ env.RG_NAME }} --name abajax --yes
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
-        run: az container create --resource-group ${{ RG_NAME }} --file acr_config.yaml
+        run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yaml
