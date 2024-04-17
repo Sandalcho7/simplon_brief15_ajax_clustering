@@ -5,7 +5,7 @@ properties:
   imageRegistryCredentials:
     - server: abajax.azurecr.io
       username: abajax
-      password: password.registry
+      password: jjnUJGtgWsdsgkX28fRlQNVVsVgqCgf+C1kc/BeAD++ACRBNuXiG
   containers:
     - name: back
       properties:

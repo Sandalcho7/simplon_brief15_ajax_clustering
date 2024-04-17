@@ -50,14 +50,14 @@ jobs:
           docker tag ${{ env.BACKEND_IMAGE }}:latest ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
           docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
 
-      # Replace the registry password value using my secret
-      - name: Find ACR token and replace in config
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: "password.registry"
-          replace: ${{ secrets.AZURE_ACR_PASSWORD }}
-          regex: false
-          include: 'acr_config.yml'
+      # # Replace the registry password value using my secret
+      # - name: Find ACR token and replace in config
+      #   uses: jacobtomlinson/gha-find-replace@v2
+      #   with:
+      #     find: "password.registry"
+      #     replace: ${{ secrets.AZURE_ACR_PASSWORD }}
+      #     regex: false
+      #     include: 'acr_config.yml'
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
