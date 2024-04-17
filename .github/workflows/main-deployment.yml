@@ -30,29 +30,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_GITHUB_SECRET }}
 
-       # Get Azure Container Registry Login Server
-      - name: Get ACR Login Server
-        id: acr
-        run: |
-          ACR_LOGIN_SERVER=$(az acr show --name ${{ env.ACR_NAME }} --query "loginServer" --output tsv)
-          echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER"
-          if [ -z "$ACR_LOGIN_SERVER" ]; then
-            echo "Failed to get ACR login server URL."
-            exit 1
-          fi
-          echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
-
-      # Get Azure Access Token
-      - name: Get Azure Access Token
-        id: get_token
-        run: |
-          TOKEN=$(az account get-access-token --query "accessToken" --output tsv)
-          echo "TOKEN=$TOKEN"
-          if [ -z "$TOKEN" ]; then
-            echo "Failed to get Azure access token."
-            exit 1
-          fi
-          echo "TOKEN=$TOKEN" >> $GITHUB_ENV
+       # Login to Azure Container Registry
+      - name: Login to ACR
+        run: az acr login --name ${{ env.ACR_NAME }}
 
       # Login to Azure Container Registry using Access Token
       - name: Login to ACR
