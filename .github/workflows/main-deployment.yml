@@ -50,8 +50,18 @@ jobs:
           docker tag ${{ env.BACKEND_IMAGE }}:latest ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
           docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
 
+      # Replace the registry password value using my secret
+      - name: Find ACR token and replace in config
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "password.registry"
+          replace: ${{ secrets.AZURE_ACR_PASSWORD }}
+          regex: false
+          include: 'acr_config.yaml'
+
+      - name: Delete Actual Container Instances
+        run: az container delete --resource-group ${{ RG_NAME }} --name abajax --yes
+
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
-        run: |
-          az container create --resource-group ${{ env.RG_NAME }} --name ${{ env.FRONTEND_CONT }} --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest --dns-name-label ${{ env.FRONTEND_DNS }} --ports 8001 --protocol TCP --registry-login-server abajax --registry-password ${{ secrets.AZURE_ACR_PASSWORD }}
-          az container create --resource-group ${{ env.RG_NAME }} --name ${{ env.BACKEND_CONT }} --image ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest --dns-name-label ${{ env.BACKEND_DNS }} --ports 8000 --protocol TCP --registry-login-server abajax --registry-password ${{ secrets.AZURE_ACR_PASSWORD }}
+        run: az container create --resource-group ${{ RG_NAME }} --file acr_config.yaml
