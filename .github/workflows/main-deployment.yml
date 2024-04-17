@@ -61,4 +61,4 @@ jobs:
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
-        run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yaml
+        run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yaml --admin-enabled true
