@@ -59,6 +59,12 @@ jobs:
           regex: false
           include: 'acr_config.yml'
 
+      # Delete existing Azure Container Instances for frontend and backend
+      - name: Delete existing Azure Container Instances
+        run: |
+          az container delete --name ${{ env.FRONTEND_CONT }} --resource-group ${{ env.RG_NAME }} --yes
+          az container delete --name ${{ env.BACKEND_CONT }} --resource-group ${{ env.RG_NAME }} --yes
+
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
         run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yml
