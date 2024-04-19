@@ -32,6 +32,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./backend/requirements.txt
 
+      # Generate .pkl files
+      - name: Generate .pkl files
+        working-directory: ./backend
+        run: python pkl_gen.py
+
        # Login to Azure Container Registry
       - name: Login to ACR
         run: az acr login --name ${{ env.ACR_NAME }}
