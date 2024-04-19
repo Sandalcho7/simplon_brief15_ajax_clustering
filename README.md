@@ -20,7 +20,6 @@ project/
 │
 ├── .github/
 │   └── workflows/
-│       ├── acr_config.yml    # Configuration de l'instance de conteneurs Azure (utilisé par le workflow)
 │       └── main-deployment.yml    # Github action workflow when pushed on main branch
 │
 ├── backend/
@@ -49,6 +48,7 @@ project/
 │   └── style.css
 │
 ├── .gitignore
+├── acr_config.yml    # Configuration de l'instance de conteneurs Azure (utilisé par le workflow)
 └── README.md
 ```
 ### Notes
