@@ -1,14 +1,10 @@
 env:
   RG_NAME: RG-ab_b15
   ACR_NAME: abb15
+  CONT_NAME: abb15
   
   FRONTEND_IMAGE: ab-front
-  FRONTEND_CONT: ab-front
-  FRONTEND_DNS: ab-front
-  
   BACKEND_IMAGE: ab-back
-  BACKEND_CONT: ab-back
-  BACKEND_DNS: ab-back
 
 on:
   push:
@@ -62,8 +58,7 @@ jobs:
       # Delete existing Azure Container Instances for frontend and backend
       - name: Delete existing Azure Container Instances
         run: |
-          az container delete --name ${{ env.FRONTEND_CONT }} --resource-group ${{ env.RG_NAME }} --yes
-          az container delete --name ${{ env.BACKEND_CONT }} --resource-group ${{ env.RG_NAME }} --yes
+          az container delete --name ${{ env.CONT_NAME }} --resource-group ${{ env.RG_NAME }} --yes
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances

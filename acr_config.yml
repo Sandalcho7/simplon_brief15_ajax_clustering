@@ -6,7 +6,7 @@ properties:
       - server: abb15.azurecr.io
         username: abb15
         password: password.registry
-        
+
   containers:
   - name: abb15-front
     properties:
