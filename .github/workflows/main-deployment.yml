@@ -83,5 +83,5 @@ jobs:
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
-        run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yml
+        run: az container create --resource-group ${{ env.RG_NAME }} --file .github/workflows/acr_config.yml
         if: steps.test.outcome == 'success'

@@ -20,6 +20,7 @@ project/
 │
 ├── .github/
 │   └── workflows/
+│       ├── acr_config.yml    # Configuration de l'instance de conteneurs Azure (utilisé par le workflow)
 │       └── main-deployment.yml    # Github action workflow when pushed on main branch
 │
 ├── backend/
@@ -37,7 +38,8 @@ project/
 │   ├── processing.py    # Fonction de processing des données
 │   ├── scoring.py    # Fonctions de scoring (silhouette score) pour chaque modèle
 │   ├── requirements.txt
-│   └── spec.md    # Spécifications de l'API
+│   ├── spec.md    # Spécifications de l'API
+│   └── testing.py    # Fonctions de test avant déploiement
 │
 ├── frontend/
 │   ├── .dockerignore
@@ -47,9 +49,11 @@ project/
 │   └── style.css
 │
 ├── .gitignore
-├── acr_config.yml    # Configuration de l'instance de conteneurs Azure (utilisé par le workflow)
 └── README.md
 ```
+### Notes
+
+Ce projet a été développé pour être déployé sur Azure via Github Actions, il est cependant possible de le faire tourner en local avec la procédure ci-dessous.
 
 ### Procédure en local
 
