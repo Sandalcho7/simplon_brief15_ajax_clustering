@@ -1,38 +1,41 @@
 apiVersion: 2023-05-01
 location: westeurope
-name: abajax
+name: abb15
 properties:
   imageRegistryCredentials:
-    - server: abajax.azurecr.io
-      username: abajax
-      password: jjnUJGtgWsdsgkX28fRlQNVVsVgqCgf+C1kc/BeAD++ACRBNuXiG
+      - server: abb15.azurecr.io
+        username: abb15
+        password: password.registry
+        
   containers:
-    - name: back
-      properties:
-        image: abajax.azurecr.io/ab-back:latest
-        ports:
-          - port: 8000
-        resources:
-          requests:
-            cpu: 1
-            memoryInGb: 1
-    - name: front
-      properties:
-        image: abajax.azurecr.io/ab-front:latest
-        ports:
-          - port: 8001
-        resources:
-          requests:
-            cpu: 1
-            memoryInGb: 1
+  - name: abb15-front
+    properties:
+      image: abb15.azurecr.io/ab-front:latest
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 8001
+  - name: abb15-back
+    properties:
+      image: abb15.azurecr.io/ab-back:latest
+      ports:
+      - port: 8000
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+
   osType: Linux
   ipAddress:
     type: Public
-    dnsNameLabel: ab-ajax
+    dnsNameLabel: abb15
     ports:
-      - protocol: tcp
-        port: 8001
-      - protocol: tcp
-        port: 8000
-tags: {tag: abajax}
+    - protocol: tcp
+      port: 8001
+    - protocol: tcp
+      port: 8000
+
+tags: {exampleTag: abb15}
 type: Microsoft.ContainerInstance/containerGroups
