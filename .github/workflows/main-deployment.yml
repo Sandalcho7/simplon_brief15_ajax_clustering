@@ -1,6 +1,6 @@
 env:
-  RG_NAME: RG_ab-ajax
-  ACR_NAME: abajax
+  RG_NAME: RG-ab_b15
+  ACR_NAME: abb15
   
   FRONTEND_IMAGE: ab-front
   FRONTEND_CONT: ab-front
