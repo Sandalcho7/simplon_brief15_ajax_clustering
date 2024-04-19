@@ -10,7 +10,7 @@ properties:
   containers:
   - name: abb15-front
     properties:
-      image: abb15.azurecr.io/ab-front:latest
+      image: abb15.azurecr.io/ab-front
       resources:
         requests:
           cpu: 1
@@ -19,7 +19,7 @@ properties:
       - port: 8001
   - name: abb15-back
     properties:
-      image: abb15.azurecr.io/ab-back:latest
+      image: abb15.azurecr.io/ab-back
       ports:
       - port: 8000
       resources:
