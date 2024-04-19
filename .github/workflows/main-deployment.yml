@@ -30,6 +30,13 @@ jobs:
       - name: Login to ACR
         run: az acr login --name ${{ env.ACR_NAME }}
 
+      # Run tests in backend directory
+      - name: Run tests
+        working-directory: ./backend
+        run: |
+          python testing.py
+        id: test
+
       # Build and push frontend Docker image to ACR
       - name: Build and push frontend Docker image
         working-directory: ./frontend
@@ -37,6 +44,7 @@ jobs:
           docker build -t ${{ env.FRONTEND_IMAGE }}:latest .
           docker tag ${{ env.FRONTEND_IMAGE }}:latest ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest
           docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest
+        if: steps.test.outcome == 'success'
 
       # Build and push backend Docker image to ACR
       - name: Build and push backend Docker image
@@ -45,6 +53,7 @@ jobs:
           docker build -t ${{ env.BACKEND_IMAGE }}:latest .
           docker tag ${{ env.BACKEND_IMAGE }}:latest ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
           docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
+        if: steps.test.outcome == 'success'
 
       # Replace the registry password value using my secret
       - name: Find ACR token and replace in config
@@ -59,7 +68,9 @@ jobs:
       - name: Delete existing Azure Container Instances
         run: |
           az container delete --name ${{ env.CONT_NAME }} --resource-group ${{ env.RG_NAME }} --yes
+        if: steps.test.outcome == 'success'
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
         run: az container create --resource-group ${{ env.RG_NAME }} --file acr_config.yml
+        if: steps.test.outcome == 'success'
