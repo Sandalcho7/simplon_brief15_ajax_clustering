@@ -16,7 +16,7 @@ properties:
           cpu: 1
           memoryInGb: 1.5
       ports:
-      - port: 8001
+      - port: 80
   - name: dev-abb15-back
     properties:
       image: abb15.azurecr.io/dev-ab-back:latest
@@ -33,7 +33,7 @@ properties:
     dnsNameLabel: dev-abb15
     ports:
     - protocol: tcp
-      port: 8001
+      port: 80
     - protocol: tcp
       port: 8000
 

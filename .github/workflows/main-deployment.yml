@@ -47,6 +47,16 @@ jobs:
         run: |
           python testing.py
 
+      # Replace the API path in script.js
+      - name: Find and replace API path
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "api.path"
+          replace: http://abb15.westeurope.azurecontainer.io:8000
+          regex: true
+          include: |
+          'frontend/script.js'
+
       # Build and push frontend Docker image to ACR
       - name: Build and push frontend Docker image
         working-directory: ./frontend
