@@ -52,7 +52,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "api.path"
-          replace: http://dev-abb15.westeurope.azurecontainer.io:8000
+          replace: "http://dev-abb15.westeurope.azurecontainer.io:8000"
           regex: false
           include: 'frontend/script.js'
 
