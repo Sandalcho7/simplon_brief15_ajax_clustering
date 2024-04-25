@@ -53,7 +53,7 @@ jobs:
         with:
           find: "api.path"
           replace: http://dev-abb15.westeurope.azurecontainer.io:8000
-          regex: true
+          regex: false
           include: 'frontend/script.js'
 
       # Build and push frontend Docker image to ACR
