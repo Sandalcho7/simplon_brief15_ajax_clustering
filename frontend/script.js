@@ -1,4 +1,4 @@
-const API_PATH = clusterapi
+const API_PATH = "clusterapi"
 
 document.addEventListener("DOMContentLoaded", function() {
     const runButton = document.getElementById("run-button");
