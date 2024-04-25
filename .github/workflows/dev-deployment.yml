@@ -1,15 +1,15 @@
 env:
   RG_NAME: RG-ab_b15
   ACR_NAME: abb15
-  CONT_NAME: abb15
+  CONT_NAME: dev-abb15
   
-  FRONTEND_IMAGE: ab-front
-  BACKEND_IMAGE: ab-back
+  FRONTEND_IMAGE: dev-ab-front
+  BACKEND_IMAGE: dev-ab-back
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - dev
 
 name: Services Deployment
 
@@ -52,7 +52,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "api.path"
-          replace: http://abb15.westeurope.azurecontainer.io:8000
+          replace: http://dev-abb15.westeurope.azurecontainer.io:8000
           regex: true
           include: '.frontend/script.js'
 
@@ -79,7 +79,7 @@ jobs:
           find: "password.registry"
           replace: ${{ secrets.AZURE_ACR_PASSWORD }}
           regex: false
-          include: 'config_deploy_main.yml'
+          include: 'config_deploy_dev.yml'
 
       # Delete existing Azure Container Instances for frontend and backend
       - name: Delete existing Azure Container Instances
@@ -88,4 +88,4 @@ jobs:
 
       # Create Azure Container Instances for frontend and backend
       - name: Create Azure Container Instances
-        run: az container create --resource-group ${{ env.RG_NAME }} --file config_deploy_main.yml
+        run: az container create --resource-group ${{ env.RG_NAME }} --file config_deploy_dev.yml
