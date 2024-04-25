@@ -51,9 +51,9 @@ jobs:
       - name: Find and replace API path
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          find: "api.path"
+          find: "clusterapi"
           replace: "http://dev-abb15.westeurope.azurecontainer.io:8000"
-          regex: false
+          regex: true
           include: 'frontend/script.js'
 
       # Build and push frontend Docker image to ACR
