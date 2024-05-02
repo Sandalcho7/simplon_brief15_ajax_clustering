@@ -4,10 +4,9 @@
 
 ### Contexte
 
-En tant que développeur IA, je veux :<br>
-    - Développer un back-end avec les modèles proprement dits, et plusieurs modalités de clustering<br>
-    - Spécifier la façon par laquelle mon programme peut interagir avec ce back<br>
-    - Développer un front-end permettant de changer les paramètres en utilisant AJAX<br>
+Ce projet a été réalisé dans le cadre de la formation de développement en intelligence artificielle chez Simplon.<br><br>
+
+Il s'agit de découvrir les différents modèles de clustering et de les exposer sur un frontend, l'occasion aussi de mettre en place un déploiement continu sur Azure, via GitHub Actions.
 
 ### Data
 
@@ -20,8 +19,8 @@ project/
 │
 ├── .github/
 │   └── workflows/
-│       └── dev-deployment.yml    # Github action workflow when pushed on dev branch
-│       └── main-deployment.yml    # Github action workflow when pull request on main branch
+│       └── dev-deployment.yml    # Worflow de déploiement sur l'environnement de dev
+│       └── main-deployment.yml    # Worflow de déploiement sur l'environnement de prod
 │
 ├── backend/
 │   ├── data/

@@ -37,5 +37,5 @@ properties:
     - protocol: tcp
       port: 8000
 
-tags: {exampleTag: dev-abb15}
+tags: {env: dev-abb15}
 type: Microsoft.ContainerInstance/containerGroups
