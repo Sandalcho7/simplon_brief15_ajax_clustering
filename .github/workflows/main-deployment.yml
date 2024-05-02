@@ -1,10 +1,13 @@
 env:
-  RG_NAME: RG-ab_b15
+  RG_NAME: anatole-RG
   ACR_NAME: abb15
   CONT_NAME: abb15
+  DNS_NAME: abb15
   
-  FRONTEND_IMAGE: ab-front
-  BACKEND_IMAGE: ab-back
+  FRONTEND_IMAGE: abb15-front
+  FRONTEND_CONT: abb15-front
+  BACKEND_IMAGE: abb15-back
+  BACKEND_CONT: abb15-back
 
 on:
   pull_request:
@@ -52,7 +55,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "clusterapi"
-          replace: "http://abb15.westeurope.azurecontainer.io:8000"
+          replace: http://${{ env.DNS_IMAGE }}.westeurope.azurecontainer.io:8000
           regex: true
           include: 'frontend/script.js'
 
