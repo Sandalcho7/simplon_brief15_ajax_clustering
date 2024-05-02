@@ -10,7 +10,7 @@ properties:
   containers:
   - name: abb15-front
     properties:
-      image: abb15.azurecr.io/dev-ab-front:latest    # Check dev-deployment.yml to see full image path to match here
+      image: abb15.azurecr.io/dev-abb15-front:latest    # Check dev-deployment.yml to see full image path to match here
       resources:
         requests:
           cpu: 1
@@ -19,7 +19,7 @@ properties:
       - port: 8001
   - name: abb15-back
     properties:
-      image: abb15.azurecr.io/dev-ab-back:latest    # Check dev-deployment.yml to see full image path to match here
+      image: abb15.azurecr.io/dev-abb15-back:latest    # Check dev-deployment.yml to see full image path to match here
       ports:
       - port: 8000
       resources:

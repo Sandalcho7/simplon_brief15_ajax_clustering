@@ -79,3 +79,6 @@ const API_PATH = "http://localhost:8000"
 python -m http.server 8001
 ```
 5 / Se rendre à l'adresse http://localhost:8001 pour consulter la page et communiquer avec l'API.
+
+### Améliorations possibles
+J'aurais aimé intégrer, dans mes fichiers config_deploy.yml, les variables d'environnements définies dans mes workflows GitHub Actions. Actuellement, il faut modifier les fichiers config dès que les variables changent dans les workflows. Ce n'est pas complètement dynamique.
