@@ -53,7 +53,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "clusterapi"
-          replace: "http://${{ env.DNS_IMAGE }}.westeurope.azurecontainer.io:8000"
+          replace: "http://${{ env.DNS_NAME }}.westeurope.azurecontainer.io:8000"
           regex: true
           include: 'frontend/script.js'
 
