@@ -1,25 +1,25 @@
 apiVersion: 2023-05-01
 location: westeurope
-name: "${{ env.CONT_NAME }}"
+name: dev-abb15    # Needs to match the CONT_NAME in dev-deployment.yml
 properties:
   imageRegistryCredentials:
-      - server: "${{ env.ACR_NAME }}.azurecr.io"
-        username: "${{ env.ACR_NAME }}"
+      - server: abb15.azurecr.io    # abb15 needs to match the ACR_NAME in dev-deployment.yml
+        username: abb15    # Same as previous line
         password: password.registry
 
   containers:
-  - name: dev-abb15-front
+  - name: abb15-front
     properties:
-      image: "${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest"
+      image: abb15.azurecr.io/dev-ab-front:latest    # Check dev-deployment.yml to see full image path to match here
       resources:
         requests:
           cpu: 1
           memoryInGb: 1.5
       ports:
       - port: 8001
-  - name: dev-abb15-back
+  - name: abb15-back
     properties:
-      image: "${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest"
+      image: abb15.azurecr.io/dev-ab-back:latest    # Check dev-deployment.yml to see full image path to match here
       ports:
       - port: 8000
       resources:
@@ -30,7 +30,7 @@ properties:
   osType: Linux
   ipAddress:
     type: Public
-    dnsNameLabel: "${{ env.DNS_IMAGE }}"
+    dnsNameLabel: dev-abb15    # Needs to match DNS_NAME in dev-deployment.yml
     ports:
     - protocol: tcp
       port: 8001
