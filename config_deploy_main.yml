@@ -1,25 +1,25 @@
 apiVersion: 2023-05-01
 location: westeurope
-name: abb15
+name: ${{ env.CONT_NAME }}
 properties:
   imageRegistryCredentials:
-      - server: abb15.azurecr.io
-        username: abb15
+      - server: ${{ env.ACR_NAME }}.azurecr.io
+        username: ${{ env.ACR_NAME }}
         password: password.registry
 
   containers:
-  - name: abb15-front
+  - name: ${{ env.FRONTEND_CONT }}
     properties:
-      image: abb15.azurecr.io/ab-front:latest
+      image: ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest
       resources:
         requests:
           cpu: 1
           memoryInGb: 1.5
       ports:
       - port: 8001
-  - name: abb15-back
+  - name: ${{ env.BACKEND_CONT }}
     properties:
-      image: abb15.azurecr.io/ab-back:latest
+      image: ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
       ports:
       - port: 8000
       resources:
@@ -30,7 +30,7 @@ properties:
   osType: Linux
   ipAddress:
     type: Public
-    dnsNameLabel: abb15
+    dnsNameLabel: ${{ env.DNS_NAME }}
     ports:
     - protocol: tcp
       port: 8001
