@@ -1,10 +1,10 @@
 # SIMPLON DEV IA | Brief 15
 
-## AJAX Clustering
+## Clustering
 
 ### Contexte
 
-Ce projet a été réalisé dans le cadre de la formation de développement en intelligence artificielle chez Simplon.<br><br>
+Ce projet a été réalisé dans le cadre de la formation de développement en intelligence artificielle chez Simplon.<br>
 
 Il s'agit de découvrir les différents modèles de clustering et de les exposer sur un frontend, l'occasion aussi de mettre en place un déploiement continu sur Azure, via GitHub Actions.
 
