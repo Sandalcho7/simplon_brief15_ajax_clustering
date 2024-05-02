@@ -1,25 +1,25 @@
 apiVersion: 2023-05-01
 location: westeurope
-name: {{CONT_NAME}}
+name: "${{ env.CONT_NAME }}"
 properties:
   imageRegistryCredentials:
-      - server: {{ACR_NAME}}.azurecr.io
-        username: {{ACR_NAME}}
+      - server: "${{ env.ACR_NAME }}.azurecr.io"
+        username: "${{ env.ACR_NAME }}"
         password: password.registry
 
   containers:
-  - name: {{FRONTEND_CONT}}
+  - name: abb15-front
     properties:
-      image: {{ACR_NAME}}.azurecr.io/{{FRONTEND_IMAGE}}:latest
+      image: "${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest"
       resources:
         requests:
           cpu: 1
           memoryInGb: 1.5
       ports:
       - port: 8001
-  - name: {{BACKEND_CONT}}
+  - name: abb15-back
     properties:
-      image: {{ACR_NAME}}.azurecr.io/{{BACKEND_IMAGE}}:latest
+      image: "${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest"
       ports:
       - port: 8000
       resources:
@@ -30,12 +30,12 @@ properties:
   osType: Linux
   ipAddress:
     type: Public
-    dnsNameLabel: {{DNS_NAME}}
+    dnsNameLabel: "${{ env.DNS_IMAGE }}"
     ports:
     - protocol: tcp
       port: 8001
     - protocol: tcp
       port: 8000
 
-tags: {env: prod}
+tags: {env: dev}
 type: Microsoft.ContainerInstance/containerGroups

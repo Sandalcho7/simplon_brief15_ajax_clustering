@@ -5,9 +5,7 @@ env:
   DNS_NAME: dev-abb15
 
   FRONTEND_IMAGE: dev-abb15-front
-  FRONTEND_CONT: dev-abb15-front
   BACKEND_IMAGE: dev-abb15-back
-  BACKEND_CONT: dev-abb15-back
 
 on:
   pull_request:
@@ -22,23 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      # Read the contents of config_deploy_main.yml
-      - name: Read config_deploy_main.yml
-        id: read-config
-        run: echo "::set-output name=config::$(cat config_deploy_main.yml)"
-        shell: bash
-
-      # Replace placeholders with environment variable values
-      - name: Replace placeholders with environment variables
-        id: replace-vars
-        run: |
-          echo "${{ steps.read-config.outputs.config }}" | \
-            sed "s/{{RG_NAME}}/${{ env.RG_NAME }}/g" | \
-            sed "s/{{ACR_NAME}}/${{ env.ACR_NAME }}/g" | \
-            sed "s/{{CONT_NAME}}/${{ env.CONT_NAME }}/g" | \
-            sed "s/{{DNS_NAME}}/${{ env.DNS_NAME }}/g" > config_deploy_main.yml
-        shell: bash
 
       # Login to Azure
       - name: Login to Azure
