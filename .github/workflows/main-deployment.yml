@@ -5,9 +5,7 @@ env:
   DNS_NAME: abb15
 
   FRONTEND_IMAGE: abb15-front
-  FRONTEND_CONT: abb15-front
   BACKEND_IMAGE: abb15-back
-  BACKEND_CONT: abb15-back
 
 on:
   pull_request:
